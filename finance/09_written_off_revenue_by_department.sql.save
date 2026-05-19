@@ -1,0 +1,30 @@
+-- ============================================================
+-- Query 9: Written Off Revenue by Department
+-- Business Problem: Which departments are writing off the most?
+-- Skills: GROUP BY, SUM, CASE, calculated columns
+-- ============================================================
+
+SELECT
+    department,
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN written_off = 'Yes' THEN 1 ELSE 0 END) AS total_written_off,
+    SUM(CASE WHEN written_off = 'Yes' THEN amount ELSE 0 END) AS written_off_revenue,
+    ROUND(
+        SUM(CASE WHEN written_off = 'Yes' THEN amount ELSE 0 END) * 100.0 / SUM(amount), 1
+    ) AS write_off_rate_pct
+FROM finance_transactions
+GROUP BY department
+ORDER BY written_off_revenue DESC;
+
+-- ============================================================
+-- ACTUAL RESULTS
+-- department  | total_transactions | total_written_off | written_off_revenue | write_off_rate_pct
+-- Collections | 48                 | 24                | 3660.00             | 42.2
+-- Billing     | 72                 | 0                 | 0.00                | 0.0
+--
+-- Finding: Collections writes off 42.2% of its revenue while
+-- Billing writes off nothing. All write-offs are concentrated
+-- in patient payment accounts, pointing to a gap in early
+-- intervention and payment plan outreach before accounts
+-- reach uncollectable status.
+-- ==========================================
