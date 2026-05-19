@@ -75,4 +75,3 @@ MySQL 8.0
 
 ## Author
 Fatima Iqbal
-[LinkedIn](https://www.linkedin.com/in/fatimaiqbal) | [Portfolio](https://github.com/fi2233fi)# sql-analytics-portfolio
