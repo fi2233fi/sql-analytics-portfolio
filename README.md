@@ -1,4 +1,4 @@
-o# SQL Analytics Portfolio
+# SQL Analytics Portfolio
 
 I built this portfolio to demonstrate applied SQL skills in contexts I
 actually understand. My background is in healthcare revenue cycle
